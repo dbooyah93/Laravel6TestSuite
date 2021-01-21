@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/posts/{post}', 'PostsController@show');
 
 Route::get('/{endPoint}', function ($endPoint) {
+    $name = 'Sarai';
     if ($endPoint === 'test') {
-        $name = 'David Boyea';
+        $this->name = 'David Boyea';
     }
     return view($endPoint, [
         'user' => $name
