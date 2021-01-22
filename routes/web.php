@@ -13,27 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/posts/{post}', 'PostsController@show');
-
-Route::get('/{endPoint}', function ($endPoint) {
-    $name = 'Sarai';
-    if ($endPoint === 'test') {
-        $this->name = 'David Boyea';
-    }
-    return view($endPoint, [
-        'user' => $name
+Route::get('/welcome', function () {
+    $var = 'homepage';
+    return view('welcome', [
+        'var' => $var
     ]);
 });
 
-
-// Route::get('/', function () {
-//     $name = request('name');
+Route::get('/about', function () {
     
-//     return view('welcome', [
-//         'name' => $name
+
+    return view('about', [
+        'articles' => App\Article::take(3)->latest()->get()
+    ]);
+});
+
+Route::get('/articles/{article}', 'ArticlesController@show');
+
+// Route::get('/posts/{post}', 'PostsController@show');
+
+// Route::get('/{endPoint}', function ($endPoint) {
+//     $name = 'Sarai';
+//     if ($endPoint === 'test') {
+//         $this->name = 'David Boyea';
+//     }
+//     return view($endPoint, [
+//         'user' => $name
 //     ]);
 // });
+
+
 
 // Route::get('/test', function () {
 //     return view('test');
